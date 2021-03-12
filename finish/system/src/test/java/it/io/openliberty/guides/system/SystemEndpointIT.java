@@ -33,15 +33,15 @@ import org.apache.cxf.jaxrs.provider.jsrjsonp.JsrJsonpProvider;
 public class SystemEndpointIT {
 
     private static String clusterUrl;
-    private static String sysIP;
 
     private Client client;
     private Response response;
 
     @BeforeAll
     public static void oneTimeSetup() {
-        String sysIP = System.getProperty("system.ip");
-        clusterUrl = "http://" + sysIP + "/system/properties/";
+        String systemIP = System.getProperty("system.ip");
+        String systemPort = System.getProperty("system.port");
+        clusterUrl = "http://" + systemIP + ":" + systemPort + "/system/properties/";
     }
     
     @BeforeEach
@@ -60,20 +60,8 @@ public class SystemEndpointIT {
     public void teardown() {
         client.close();
     }
-    
-    @Test
-    @Order(1)
-    public void testPodNameNotNull() {
-        response = this.getResponse(clusterUrl);
-        this.assertResponse(clusterUrl, response);
-        String greeting = response.getHeaderString("X-Pod-Name");
-        
-        assertNotNull(greeting,
-            "Container name should not be null but it was. The service is probably not running inside a container");
-    }
 
     @Test
-    @Order(2)
     public void testGetProperties() {
         Client client = ClientBuilder.newClient();
         client.register(JsrJsonpProvider.class);
@@ -85,12 +73,12 @@ public class SystemEndpointIT {
         response.close();
     }
 
-    private Response getResponse(String url) {
-        return client.target(url).request().get();
-    }
+    // private Response getResponse(String url) {
+    //     return client.target(url).request().get();
+    // }
 
-    private void assertResponse(String url, Response response) {
-        assertEquals(200, response.getStatus(), "Incorrect response code from " + url);
-    }
+    // private void assertResponse(String url, Response response) {
+    //     assertEquals(200, response.getStatus(), "Incorrect response code from " + url);
+    // }
 
 }

@@ -17,7 +17,8 @@
         <http.port>9080</http.port>
         <https.port>9443</https.port>
         <!-- Default test properties -->
-        <system.ip>localhost:9080</system.ip>
+        <system.ip>localhost</system.ip>
+        <system.port>9080</system.port>
     </properties>
 
     <dependencies>
@@ -102,6 +103,12 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <system.ip>${system.ip}</system.ip>
+                        <system.port>${system.port}</system.port>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
 
         </plugins>
