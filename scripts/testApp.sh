@@ -11,7 +11,10 @@ set -euxo pipefail
 export HOSTNAME=localhost
 
 ## Rebuild the application
-mvn -q clean package 
+mvn -Dhttp.keepAlive=false \
+    -Dmaven.wagon.http.pool=false \
+    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+    -q clean package
 mvn -pl system liberty:create 
 mvn -pl system liberty:install-feature 
 mvn -pl system liberty:deploy
