@@ -527,7 +527,7 @@ include::finish/kubernetes.yaml[]
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Create the `kubernetes.yaml` file.#
+#Create the `kubernetes.yaml` file in the `start` directory.#
 `kubernetes.yaml`
 ----
 
