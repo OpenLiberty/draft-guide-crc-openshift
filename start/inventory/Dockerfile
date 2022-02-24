@@ -17,6 +17,6 @@ LABEL \
   description="This image contains the inventory microservice running with the Open Liberty runtime."
 
 COPY --chown=1001:0 src/main/liberty/config /config/
-COPY --chown=1001:0 target/inventory.war /config/apps
+COPY --chown=1001:0 target/guide-openshift-codeready-containers-inventory.war /config/apps
 
 RUN configure.sh
