@@ -15,8 +15,8 @@ package it.io.openliberty.guides.inventory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import jakarta.net.ssl.HostnameVerifier;
-import jakarta.net.ssl.SSLSession;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.core.Response;
@@ -95,7 +95,7 @@ public class InventoryEndpointIT {
 
         int expected = 1;
         int actual = obj.getInt("total");
-        assertEquals( expected, actual,
+        assertEquals(expected, actual,
                 "The inventory should have one entry for " + sysHostname);
 
         boolean serviceExists = obj.getJsonArray("systems").getJsonObject(0)
@@ -118,10 +118,11 @@ public class InventoryEndpointIT {
         this.assertResponse(invUrl, invResponse);
         this.assertResponse(sysUrl, sysResponse);
 
-        JsonObject jsonFromInventory = (JsonObject) invResponse.readEntity(JsonObject.class)
-                                                            .getJsonArray("systems")
-                                                            .getJsonObject(0)
-                                                            .get("properties");
+        JsonObject jsonFromInventory = (JsonObject)
+                                        invResponse.readEntity(JsonObject.class)
+                                                   .getJsonArray("systems")
+                                                   .getJsonObject(0)
+                                                   .get("properties");
 
         JsonObject jsonFromSystem = sysResponse.readEntity(JsonObject.class);
 
