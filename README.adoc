@@ -1,4 +1,4 @@
-// Copyright (c) 2021 IBM Corporation and others.
+// Copyright (c) 2022 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -40,31 +40,15 @@ Explore how to deploy microservices to a local OpenShift cluster running with Co
 
 == What you'll learn 
 
-You'll learn how to deploy two microservices in Open Liberty containers to an OpenShift 4 cluster 
-that is running locally on your computer by using CodeReady Containers.
-To learn how to deploy to an OpenShift 4 cluster by using operators, see the 
-https://openliberty.io/guides/cloud-openshift-operator.html[Deploying microservices to OpenShift by using Kubernetes Operators^] guide. 
+You'll learn how to deploy two microservices in Open Liberty containers to an OpenShift 4 cluster that is running locally on your computer by using CodeReady Containers. To learn how to deploy to an OpenShift 4 cluster by using operators, see the https://openliberty.io/guides/cloud-openshift-operator.html[Deploying microservices to OpenShift by using Kubernetes Operators^] guide. 
 
-Different cloud-based solutions are available for running your {kube} workloads. 
-With a cloud-based infrastructure, you can focus on developing your microservices without worrying 
-about low-level infrastructure details for deployment. 
-By using the cloud, you can easily scale and manage your microservices in a high-availability setup.
+Different cloud-based solutions are available for running your {kube} workloads. With a cloud-based infrastructure, you can focus on developing your microservices without worrying about low-level infrastructure details for deployment. By using the cloud, you can easily scale and manage your microservices in a high-availability setup.
 
-{kube} is an open source container orchestrator that automates many tasks that are involved in deploying, 
-managing, and scaling containerized applications. 
-To learn more about Kubernetes, 
-check out the https://openliberty.io/guides/kubernetes-intro.html[Deploying microservices to Kubernetes^] guide.
+{kube} is an open source container orchestrator that automates many tasks that are involved in deploying, managing, and scaling containerized applications. To learn more about Kubernetes, check out the https://openliberty.io/guides/kubernetes-intro.html[Deploying microservices to Kubernetes^] guide.
 
-https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.23/html/getting_started_guide/index[Red Hat CodeReady Containers^] (CRC) is a tool that you can use to quickly build and run
-a minimal OpenShift 4 cluster on your local computer. CRC simplifies setup 
-and testing while providing all of tools that are needed to develop container-based
-applications. 
+https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.23/html/getting_started_guide/index[Red Hat CodeReady Containers^] (CRC) is a tool that you can use to quickly build and run a minimal OpenShift 4 cluster on your local computer. CRC simplifies setup and testing while providing all of tools that are needed to develop container-based applications. 
 
-The two microservices that you'll deploy are called `system` and `inventory`. 
-The `system` microservice returns the JVM system properties of the running container. 
-It also returns the pod name in the HTTP header, which makes pod replicas more distinguishable from each other.
-The `inventory` microservice adds the properties from the `system` microservice to the inventory. 
-This process demonstrates how communication can be established between pods inside a cluster.
+The two microservices that you'll deploy are called `system` and `inventory`. The `system` microservice returns the JVM system properties of the running container. It also returns the pod name in the HTTP header, which makes pod replicas more distinguishable from each other. The `inventory` microservice adds the properties from the `system` microservice to the inventory. This process demonstrates how communication can be established between pods inside a cluster.
 
 // =================================================================================================
 // Prerequisites
@@ -74,13 +58,9 @@ This process demonstrates how communication can be established between pods insi
 
 Before you begin, the following tools need to be installed:
 
-* *Docker:* You need a containerization software for building containers. 
-Kubernetes supports various container types, but you'll use Docker in this guide. 
-For installation instructions, refer to the official https://docs.docker.com/get-docker/[Docker documentation^].
+* *Docker:* You need a containerization software for building containers. Kubernetes supports various container types, but you'll use Docker in this guide. For installation instructions, refer to the official https://docs.docker.com/get-docker/[Docker documentation^].
 
-* *CodeReady Containers:* You need to install CRC to run
-OpenShift 4 locally on your computer. For installation instructions, refer to the
-official https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.23/html/getting_started_guide/installation_gsg[CodeReady Containers documentation].   
+* *CodeReady Containers:* You need to install CRC to run OpenShift 4 locally on your computer. For installation instructions, refer to the official https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.23/html/getting_started_guide/installation_gsg[CodeReady Containers documentation].   
 
 // =================================================================================================
 // Getting Started
@@ -115,9 +95,7 @@ Next, run the following command to start the CodeReady Containers virtual machin
 crc start
 ```
 
-When prompted, supply your user pull secret. The pull secret can be found on the
-page where you downloaded the
-https://cloud.redhat.com/openshift/create/local[latest release of CodeReady Containers].
+When prompted, supply your user pull secret. The pull secret can be found on the page where you downloaded the https://cloud.redhat.com/openshift/create/local[latest release of CodeReady Containers].
 
 If the cluster starts successfully, you can see output similar to the following example:
 
@@ -141,9 +119,7 @@ Save this output as it might be required later in this guide.
 
 === Logging in to the cluster 
 
-To interact with the OpenShift cluster, you need to use the `oc` commands.
-CRC already includes the `oc` binary. 
-To use the `oc` commands, run the following command to see instructions on how to configure your PATH:
+To interact with the OpenShift cluster, you need to use the `oc` commands. CRC already includes the `oc` binary. To use the `oc` commands, run the following command to see instructions on how to configure your PATH:
 
 [role=command]
 ```
@@ -211,8 +187,7 @@ Run the following command to log in and gain access to your OpenShift cluster:
 oc login -u developer https://api.crc.testing:6443
 ```
 
-If prompted, enter the `developer` password from the output for the `crc start` command that you ran in the _Starting the virtual machine_ section.
-Next, create a new OpenShift project with the name `my-project` by running the following command:
+If prompted, enter the `developer` password from the output for the `crc start` command that you ran in the _Starting the virtual machine_ section. Next, create a new OpenShift project with the name `my-project` by running the following command:
 
 [role=command]
 ```
@@ -227,9 +202,7 @@ You're now ready to build and deploy microservices.
 
 == Deploying microservices to OpenShift
 
-In this section, you'll learn how to deploy two microservices in Open Liberty containers to a {kube}
-cluster on OpenShift. You'll build and containerize the `system` and `inventory` microservices, 
-push them to a container registry, and then deploy them to your {kube} cluster. 
+In this section, you'll learn how to deploy two microservices in Open Liberty containers to a {kube} cluster on OpenShift. You'll build and containerize the `system` and `inventory` microservices, push them to a container registry, and then deploy them to your {kube} cluster. 
 
 // =================================================================================================
 // Building and containerizing the microservices
@@ -239,16 +212,9 @@ push them to a container registry, and then deploy them to your {kube} cluster.
 
 The first step of deploying to {kube} is to build your microservices and containerize them.
 
-The starting Java project, which is located in the start directory, is a multi-module Maven project. 
-It's made up of the `system` and `inventory` microservices. 
-Each microservice is located in its own directory: `start/system` for the `system` microservice and `start/inventory` for the `inventory` microservice. 
-Each of these directories contains a Dockerfile, which is necessary for building the Docker images. 
-See the https://openliberty.io/guides/containerize.html[Containerizing microservices^] 
-guide if you're unfamiliar with Dockerfiles.
+The starting Java project, which is located in the start directory, is a multi-module Maven project. It's made up of the `system` and `inventory` microservices. Each microservice is located in its own directory: `start/system` for the `system` microservice and `start/inventory` for the `inventory` microservice. Each of these directories contains a Dockerfile, which is necessary for building the Docker images. See the https://openliberty.io/guides/containerize.html[Containerizing microservices^] guide if you're unfamiliar with Dockerfiles.
 
-If you're familiar with Maven and Docker, you might be tempted to run a Maven build first and then
-use the `.war` file to build a Docker image. However, these projects are set up so that this process is automated 
-as a part of a single Maven build.
+If you're familiar with Maven and Docker, you might be tempted to run a Maven build first and then use the `.war` file to build a Docker image. However, these projects are set up so that this process is automated as a part of a single Maven build.
 
 Go to the `start` directory and build these microservices by running the following commands:
 
@@ -267,8 +233,7 @@ docker build -t system:1.0-SNAPSHOT system/.
 docker build -t inventory:1.0-SNAPSHOT inventory/.
 ```
 
-During the build, you see various Docker messages that describe what images are being downloaded and
-built. When the build finishes, run the following command to list all local Docker images:
+During the build, you see various Docker messages that describe what images are being downloaded and built. When the build finishes, run the following command to list all local Docker images:
 
 [role=command]
 ```
@@ -285,8 +250,7 @@ inventory                     1.0-SNAPSHOT
 openliberty/open-liberty      kernel-java8-openj9-ubi
 ----
 
-If you don't see the `system:1.0-SNAPSHOT` and `inventory:1.0-SNAPSHOT` images, check the Maven
-build log for any potential errors.
+If you don't see the `system:1.0-SNAPSHOT` and `inventory:1.0-SNAPSHOT` images, check the Maven build log for any potential errors.
 
 // =================================================================================================
 // Pushing the images to OpenShift's internal registry
@@ -294,10 +258,7 @@ build log for any potential errors.
 
 === Pushing the images to OpenShift's internal registry
 
-In order to run the microservices on the cluster, 
-you need to push the microservice images to a container image registry. 
-You'll use OpenShift Container Registry (OCR), which is the OpenShift integrated container image registry. 
-After your images are pushed to the registry, you can use them in the pods that you create later in the guide.
+In order to run the microservices on the cluster, you need to push the microservice images to a container image registry. You'll use OpenShift Container Registry (OCR), which is the OpenShift integrated container image registry. After your images are pushed to the registry, you can use them in the pods that you create later in the guide.
 
 Run the login command to authenticate your Docker client to your OCR.:
 
@@ -312,8 +273,7 @@ include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.mac_section]
 --
-Click the Docker icon in your menu bar, select *Preferences*, and then click *Docker Engine*. 
-If a JSON object already exists, add the following key/value pair to it:
+Click the Docker icon in your menu bar, select *Preferences*, and then click *Docker Engine*. If a JSON object already exists, add the following key/value pair to it:
 
 [role="command"]
 ----
@@ -334,8 +294,7 @@ Next, press the *Apply & Restart* button for the changes to take effect.
 
 [.tab_content.windows_section]
 --
-Click the Docker icon in your system tray, select *Settings*, and then click *Docker Engine*. 
-If a JSON object already exists, add the following key/value pair to it:
+Click the Docker icon in your system tray, select *Settings*, and then click *Docker Engine*. If a JSON object already exists, add the following key/value pair to it:
 
 [role="command"]
 ----
@@ -357,8 +316,7 @@ Next, press the *Apply & Restart* button for the changes to take effect.
 [.tab_content.linux_section]
 --
 
-Open the `/etc/docker/daemon.json` file or create it if it doesn't already exist. 
-If the file already contains a JSON object, add the following key/value pair: 
+Open the `/etc/docker/daemon.json` file or create it if it doesn't already exist. If the file already contains a JSON object, add the following key/value pair: 
 
 [role="command"]
 ----
@@ -377,14 +335,9 @@ If the file doesn't already contain a JSON object, instead add the following obj
 Next, restart Docker for the changes to take effect.
 --
 
-To learn more about testing insecure registries, 
-check out the official https://docs.docker.com/registry/insecure/[Docker documentation].
-Remember to use a secure registry for production environments.
+To learn more about testing insecure registries, check out the official https://docs.docker.com/registry/insecure/[Docker documentation]. Remember to use a secure registry for production environments.
 
-You can store your Docker credentials in a custom external credential store, 
-which is more secure than using a Docker configuration file. 
-If you're using a custom credential store for securing your registry credentials, 
-or if you're unsure where your credentials are stored, use the following command:
+You can store your Docker credentials in a custom external credential store, which is more secure than using a Docker configuration file. If you're using a custom credential store for securing your registry credentials, or if you're unsure where your credentials are stored, use the following command:
 
 include::{common-includes}/os-tabs.adoc[]
 
@@ -398,8 +351,7 @@ echo $(oc whoami -t) | docker login -u developer --password-stdin $(oc registry 
 
 [.tab_content.windows_section]
 --
-Because the Windows command prompt doesn’t support the command substitution that is displayed for Mac and Linux, 
-run the following commands: 
+Because the Windows command prompt doesn’t support the command substitution that is displayed for Mac and Linux, run the following commands: 
 [role=command]
 ```
 oc whoami
@@ -414,8 +366,7 @@ docker login -u [oc whoami] -p [oc whoami -t] [oc registry info]
 ```
 --
 
-This command authenticates your credentials against the internal registry so that
-you're able to push and pull images.
+This command authenticates your credentials against the internal registry so that you're able to push and pull images.
 
 You can view the registry address by running the following command:
 
@@ -513,11 +464,7 @@ system      default-route-openshift-image-registry.apps.us-west-1.starter.opensh
 
 Now that your container images are built, deploy them by using a Kubernetes object configuration file.
 
-{kube} objects can be configured in a YAML file that contains a description of all your 
-deployments, services, or any other objects that you want to deploy. 
-All objects can also be deleted from the cluster by using the same YAML file that you used to deploy them. 
-If you're interested in learning more about using and configuring Kubernetes clusters, check out the 
-https://openliberty.io/guides/kubernetes-intro.html[Deploying microservices to Kubernetes^] guide.
+{kube} objects can be configured in a YAML file that contains a description of all your deployments, services, or any other objects that you want to deploy. All objects can also be deleted from the cluster by using the same YAML file that you used to deploy them. If you're interested in learning more about using and configuring Kubernetes clusters, check out the https://openliberty.io/guides/kubernetes-intro.html[Deploying microservices to Kubernetes^] guide.
 
 kubernetes.yaml
 [source, yaml, linenums, role="code_column"]
@@ -531,8 +478,7 @@ include::finish/kubernetes.yaml[]
 `kubernetes.yaml`
 ----
 
-In this file, the [hotspot=systemImage hotspot=inventoryImage]`image` is the name and tag of the container image that is used. 
-The image address is the same OCR address that you logged in to in the previous section.
+In this file, the [hotspot=systemImage hotspot=inventoryImage]`image` is the name and tag of the container image that is used. The image address is the same OCR address that you logged in to in the previous section.
 
 Run the following commands to deploy the objects as defined in kubernetes.yaml file:
 [role='command']
@@ -572,8 +518,7 @@ inventory-deployment-645767664f-nbtd9   1/1       Running   0          15s
 
 == Making requests to the microservices
 
-Routes are used to access the services and the application. A route in OpenShift exposes a service at 
-a hostname such as `www.your-web-app.com` so external users can access the application. 
+Routes are used to access the services and the application. A route in OpenShift exposes a service at a hostname such as `www.your-web-app.com` so external users can access the application. 
 
 kubernetes.yaml
 [source, yaml, linenums, role="code_column"]
@@ -581,8 +526,7 @@ kubernetes.yaml
 include::finish/kubernetes.yaml[]
 ----
 
-Both the [hotspot=systemRoute]`system` and [hotspot=inventoryRoute]`inventory` routes are configured in the 
-[hotspot]`kubernetes.yaml` file, and running the `oc apply -f kubernetes.yaml` command exposed both services.
+Both the [hotspot=systemRoute]`system` and [hotspot=inventoryRoute]`inventory` routes are configured in the [hotspot]`kubernetes.yaml` file, and running the `oc apply -f kubernetes.yaml` command exposed both services.
 
 Your microservices can now be accessed through the hostnames that you can find by running the following command:
 
@@ -591,29 +535,16 @@ Your microservices can now be accessed through the hostnames that you can find b
 oc get routes
 ```
 
-The routes can also be found in the web console.
-The web console URL is similar to `console-openshift-console.apps-crc.testing` and was given as part of
-the output of the `crc start` command at the start of the guide. 
-When you access the web console, log in using the administrator account credentials. 
-After logging in, you can view the routes by navigating to the `Networking > Routes` page. 
-Hostnames are in the `Location` columnn in the `inventory-route-my-project.apps-crc.testing` format. 
-Ensure that you're in your project, not the `default` project, 
-which is shown in the `Project:` field for the console.
+The routes can also be found in the web console. The web console URL is similar to `console-openshift-console.apps-crc.testing` and was given as part of the output of the `crc start` command at the start of the guide. When you access the web console, log in using the administrator account credentials. After logging in, you can view the routes by navigating to the `Networking > Routes` page. Hostnames are in the `Location` columnn in the `inventory-route-my-project.apps-crc.testing` format. Ensure that you're in your project, not the `default` project, which is shown in the `Project:` field for the console.
 
-Enter the following URLs into your web browser to access your microservices. Substitute the hostnames that you obtained from the `oc get routes` command
-for the `system` and `inventory` services:
+Enter the following URLs into your web browser to access your microservices. Substitute the hostnames that you obtained from the `oc get routes` command for the `system` and `inventory` services:
 
 * `http://[system-hostname]/system/properties/`
 * `http://[inventory-hostname]/inventory/systems`
 
-In the first URL, you see the system properties of the container JVM in JSON format. 
-The second URL returns an empty list, which is expected because 
-no system properties are stored in the inventory yet.
+In the first URL, you see the system properties of the container JVM in JSON format. The second URL returns an empty list, which is expected because no system properties are stored in the inventory yet.
 
-Point your browser to the `http://[inventory-hostname]/inventory/systems/[system-hostname]` URL. 
-When you go to this URL, the system properties that are taken from the `system` service are 
-automatically stored in the inventory. 
-Revisit the `http://[inventory-hostname]/inventory/systems` URL and you see a new entry.
+Point your browser to the `http://[inventory-hostname]/inventory/systems/[system-hostname]` URL. When you go to this URL, the system properties that are taken from the `system` service are automatically stored in the inventory. Revisit the `http://[inventory-hostname]/inventory/systems` URL and you see a new entry.
 
 // =================================================================================================
 // Testing the microservices
@@ -627,10 +558,7 @@ pom.xml
 include::finish/inventory/pom.xml[]
 ----
 
-A few tests are included for you to test the basic functions of the microservices. 
-If a test failure occurs, then you might have introduced a bug into the code. 
-To run the tests, wait for all pods to be in the ready state before you proceed further. 
-The default properties that are defined in the [hotspot]`pom.xml` file are:
+A few tests are included for you to test the basic functions of the microservices. If a test failure occurs, then you might have introduced a bug into the code. To run the tests, wait for all pods to be in the ready state before you proceed further. The default properties that are defined in the [hotspot]`pom.xml` file are:
 
 [cols="15, 100", options="header"]
 |===
@@ -684,8 +612,7 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 == Tearing down the environment
 
-When you no longer need your deployed microservices, you can delete the {kube} deployments, services, and routes 
-by running the following command:
+When you no longer need your deployed microservices, you can delete the {kube} deployments, services, and routes by running the following command:
 
 [role='command']
 ```
@@ -721,8 +648,7 @@ crc delete
 
 == Great work! You're done!
 
-You just deployed two microservices running in Open Liberty to OpenShift using CodeReady Containers. You also 
-learned how to use `oc` to deploy your microservices on a {kube} cluster.
+You just deployed two microservices running in Open Liberty to OpenShift using CodeReady Containers. You also learned how to use `oc` to deploy your microservices on a {kube} cluster.
 
 // Multipane
 include::{common-includes}/attribution.adoc[subs="attributes"]
