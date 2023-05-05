@@ -43,15 +43,15 @@ public class SystemClient {
         client.close();
     }
     return properties;
-}
+  }
 
   // Method that creates the client builder
   private Builder getBuilder(String hostname, Client client) throws Exception {
-    String urlString = protocol + hostname + SYSTEM_PROPERTIES;
+    String urlString = PROTOCOL + hostname + SYSTEM_PROPERTIES;
     Builder builder = client.target(urlString).request();
     builder.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
     return builder;
-}
+  }
 
   // Helper method that processes the request
   private Properties getPropertiesHelper(Builder builder) throws Exception {
@@ -62,6 +62,6 @@ public class SystemClient {
         System.err.println("Response Status is not OK.");
         return null;
     }
-}
+  }
 
 }
