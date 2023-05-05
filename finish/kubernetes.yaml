@@ -67,7 +67,7 @@ spec:
     port: 8080
 ---
 # tag::systemRoute[]
-apiVersion: route.openshift.io/v1
+apiVersion: v1
 # Changed for Running on Mac M2, original was v1
 kind: Route
 metadata:
@@ -79,7 +79,8 @@ spec:
 # end::systemRoute[]
 ---
 # tag::inventoryRoute[]
-apiVersion: route.openshift.io/v1
+apiVersion: v1
+# apiVersion: route.openshift.io/v1
 # Changed for Running on Mac M2, original was v1
 kind: Route
 metadata:
