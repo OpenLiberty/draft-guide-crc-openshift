@@ -28,7 +28,6 @@ public class SystemClient {
   private final String SYSTEM_PROPERTIES = "/system/properties";
   private final String PROTOCOL = "http://";
 
-
   // Wrapper function that gets properties
   public Properties getProperties(String hostname) {
     Properties properties = null;
