@@ -31,9 +31,6 @@ public class SystemClient {
   private final String SYSTEM_PROPERTIES = "/system/properties";
   private final String PROTOCOL = "http://";
 
-  @Inject
-  @ConfigProperty(name = "system.http.port")
-  String SYS_HTTP_PORT;
 
   // Wrapper function that gets properties
   public Properties getProperties(String hostname) {
@@ -53,10 +50,7 @@ public class SystemClient {
 
   // Method that creates the client builder
   private Builder getBuilder(String hostname, Client client) throws Exception {
-    URI uri = new URI(
-                  PROTOCOL, null, hostname, Integer.valueOf(SYS_HTTP_PORT),
-                  SYSTEM_PROPERTIES, null, null);
-    String urlString = uri.toString();
+    String urlString = protocol + hostname + SYSTEM_PROPERTIES;
     Builder builder = client.target(urlString).request();
     builder.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
     return builder;
