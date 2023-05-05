@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2017, 2022 IBM Corporation and others.
+ * Copyright (c) 2017, 2023 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -30,44 +30,37 @@ public class SystemClient {
 
   // Wrapper function that gets properties
   public Properties getProperties(String hostname) {
-    String url = buildUrl(PROTOCOL, hostname, SYSTEM_PROPERTIES);
-    Builder clientBuilder = buildClientBuilder(url);
-    return getPropertiesHelper(clientBuilder);
-  }
-
-  protected String buildUrl(String protocol, String host, String path) {
-    return protocol + host + path;
+    Properties properties = null;
+    Client client = ClientBuilder.newClient();
+    try {
+        Builder builder = getBuilder(hostname, client);
+        properties = getPropertiesHelper(builder);
+    } catch (Exception e) {
+        System.err.println(
+        "Exception thrown while getting properties: " + e.getMessage());
+    } finally {
+        client.close();
+    }
+    return properties;
   }
 
   // Method that creates the client builder
-  protected Builder buildClientBuilder(String urlString) {
-    try {
-      Client client = ClientBuilder.newClient();
-      Builder builder = client.target(urlString).request();
-      return builder.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
-    } catch (Exception e) {
-      System.err.println("Exception thrown while building the client: "
-                        + e.getMessage());
-      return null;
-    }
+  private Builder getBuilder(String hostname, Client client) throws Exception {
+    String urlString = PROTOCOL + hostname + SYSTEM_PROPERTIES;
+    Builder builder = client.target(urlString).request();
+    builder.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
+    return builder;
   }
 
   // Helper method that processes the request
-  protected Properties getPropertiesHelper(Builder builder) {
-    try {
-      Response response = builder.get();
-      if (response.getStatus() == Status.OK.getStatusCode()) {
+  private Properties getPropertiesHelper(Builder builder) throws Exception {
+    Response response = builder.get();
+    if (response.getStatus() == Status.OK.getStatusCode()) {
         return response.readEntity(Properties.class);
-      } else {
+    } else {
         System.err.println("Response Status is not OK.");
-      }
-    } catch (RuntimeException e) {
-      System.err.println("Runtime exception: " + e.getMessage());
-    } catch (Exception e) {
-      System.err.println("Exception thrown while invoking the request: "
-                        + e.getMessage());
+        return null;
     }
-    return null;
   }
 
 }
