@@ -67,7 +67,7 @@ spec:
     port: 8080
 ---
 # tag::systemRoute[]
-apiVersion: v1
+apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: system-route
@@ -78,7 +78,7 @@ spec:
 # end::systemRoute[]
 ---
 # tag::inventoryRoute[]
-apiVersion: v1
+apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: inventory-route
