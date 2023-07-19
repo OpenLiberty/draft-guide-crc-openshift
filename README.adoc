@@ -10,21 +10,22 @@
 :page-layout: guide-multipane
 :page-duration: 45 minutes 
 :page-releasedate: 2021-06-22
-:page-description: Explore how to deploy microservices to a local OpenShift cluster running with CodeReady Containers
+:page-majorupdateddate: 2023-08-15
+:page-description: Explore how to deploy microservices to a local OpenShift cluster running with OpenShift Local (formerly known as CodeReady Containers)
 :page-tags: ['Kubernetes', 'Docker', 'Cloud'] 
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['kubernetes-intro', 'kubernetes-microprofile-config', 'kubernetes-microprofile-health', 'istio-intro', 'cloud-openshift-operator'] 
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
-:page-seo-title: Deploying Java microservices to Red Hat OpenShift using CodeReady Containers
-:page-seo-description: A getting started tutorial with examples on how to deploy Java microservices to a Kubernetes cluster on OpenShift running locally with CodeReady Containers using OpenShift Container Registry (OCR). 
+:page-seo-title: Deploying Java microservices to Red Hat OpenShift using OpenShift Local (formerly known as CodeReady Containers)
+:page-seo-description: A getting started tutorial with examples on how to deploy Java microservices to a Kubernetes cluster on OpenShift running locally with OpenShift Local (formerly known as CodeReady Containers) using OpenShift Container Registry (OCR). 
 :guide-author: Open Liberty
-= Deploying microservices to OpenShift using CodeReady Containers
+= Deploying microservices to OpenShift cluster using OpenShift Local
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website^].
 
-Explore how to deploy microservices to a local OpenShift cluster running with CodeReady Containers
+Explore how to deploy microservices to a local OpenShift cluster running with OpenShift Local (formerly known as CodeReady Containers)
 
 :kube: Kubernetes
 :hashtag: #
