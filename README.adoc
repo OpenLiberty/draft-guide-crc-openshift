@@ -266,7 +266,7 @@ If you don't see the `system:1.0-SNAPSHOT` and `inventory:1.0-SNAPSHOT` images, 
 
 In order to run the microservices on the cluster, you need to push the microservice images to a container image registry. You'll use OpenShift Container Registry (OCR), which is the OpenShift integrated container image registry. After your images are pushed to the registry, you can use them in the pods that you create later in the guide.
 
-Run the login command to authenticate your Docker client to your OCR.:
+Run the following command to login your OCR.:
 
 [role=command]
 ```
@@ -445,8 +445,9 @@ The routes can also be found in the web console. The web console URL is similar 
 
 Enter the following URLs into your web browser to access your microservices. Substitute the hostnames that you obtained from the `oc get routes` command for the `system` and `inventory` services:
 
-* `http://[system-hostname]/system/properties/`
-* `http://[inventory-hostname]/inventory/systems`
+* http://system-route-my-project.apps-crc.testing/system/properties[`http://[system-hostname]/system/properties`^]
+* http://inventory-route-my-project.apps-crc.testing/inventory/systems[http\://[inventory-hostname]/inventory/systems^]
+
 
 In the first URL, you see the system properties of the container JVM in JSON format. The second URL returns an empty list, which is expected because no system properties are stored in the inventory yet.
 
