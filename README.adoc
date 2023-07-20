@@ -41,13 +41,13 @@ Explore how to deploy microservices to a local OpenShift cluster running with Op
 
 == What you'll learn 
 
-You'll learn how to deploy two microservices in Open Liberty containers to an OpenShift 4 cluster that is running locally on your computer by using CodeReady Containers. To learn how to deploy to an OpenShift 4 cluster by using operators, see the https://openliberty.io/guides/cloud-openshift-operator.html[Deploying microservices to OpenShift by using Kubernetes Operators^] guide. 
+You'll learn how to deploy two microservices in Open Liberty containers to an OpenShift 4 cluster that is running locally on your computer by using OpenShift Local. To learn how to deploy to an OpenShift 4 cluster by using operators, see the https://openliberty.io/guides/cloud-openshift-operator.html[Deploying microservices to OpenShift by using Kubernetes Operators^] guide. 
 
 Different cloud-based solutions are available for running your {kube} workloads. With a cloud-based infrastructure, you can focus on developing your microservices without worrying about low-level infrastructure details for deployment. By using the cloud, you can easily scale and manage your microservices in a high-availability setup.
 
 {kube} is an open source container orchestrator that automates many tasks that are involved in deploying, managing, and scaling containerized applications. To learn more about Kubernetes, check out the https://openliberty.io/guides/kubernetes-intro.html[Deploying microservices to Kubernetes^] guide.
 
-https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.23/html/getting_started_guide/index[Red Hat CodeReady Containers^] (CRC) is a tool that you can use to quickly build and run a minimal OpenShift 4 cluster on your local computer. CRC simplifies setup and testing while providing all of tools that are needed to develop container-based applications. 
+https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.23/html/getting_started_guide/index[Red Hat OpenShift Local^] is a tool that you can use to quickly build and run a minimal OpenShift 4 cluster on your local computer. CRC simplifies setup and testing while providing all of tools that are needed to develop container-based applications. 
 
 The two microservices that you'll deploy are called `system` and `inventory`. The `system` microservice returns the JVM system properties of the running container. It also returns the pod name in the HTTP header, which makes pod replicas more distinguishable from each other. The `inventory` microservice adds the properties from the `system` microservice to the inventory. This process demonstrates how communication can be established between pods inside a cluster.
 
@@ -61,7 +61,7 @@ Before you begin, the following tools need to be installed:
 
 * *Docker:* You need a containerization software for building containers. Kubernetes supports various container types, but you'll use Docker in this guide. For installation instructions, refer to the official https://docs.docker.com/get-docker/[Docker documentation^].
 
-* *CodeReady Containers:* You need to install CRC to run OpenShift 4 locally on your computer. For installation instructions, refer to the official https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.23/html/getting_started_guide/installation_gsg[CodeReady Containers documentation].   
+* *OpenShift Local:* You need to install OpenShift Local to run OpenShift 4 locally on your computer. For installation instructions, refer to the official https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.23/html/getting_started_guide/installing[OpenShift Local documentation].   
 
 // =================================================================================================
 // Getting Started
@@ -73,14 +73,14 @@ include::{common-includes}/gitclone.adoc[]
 // no "try what you'll build" section in this guide as it would be too long due to all setup the user will have to do.
 
 // =================================================================================================
-// Starting CodeReady Containers
+// Starting OpenShift Local
 // =================================================================================================
 
-== Starting CodeReady Containers
+== Starting OpenShift Local
 
-=== Setting up CodeReady Containers
+=== Setting up OpenShift Local
 
-Run the following command to set up your host machine for CodeReady Containers:
+Run the following command to set up your host machine for OpenShift Local:
 
 [role=command]
 ```
@@ -89,14 +89,14 @@ crc setup
 
 === Starting the virtual machine
 
-Next, run the following command to start the CodeReady Containers virtual machine and OpenShift cluster:
+Next, run the following command to start the OpenShift Local virtual machine and OpenShift cluster:
 
 [role=command]
 ```
 crc start
 ```
 
-When prompted, supply your user pull secret. The pull secret can be found on the page where you downloaded the https://cloud.redhat.com/openshift/create/local[latest release of CodeReady Containers].
+When prompted, supply your user pull secret. The pull secret can be found on the page where you downloaded the https://cloud.redhat.com/openshift/create/local[latest release of OpenShift Local].
 
 If the cluster starts successfully, you can see output similar to the following example:
 
@@ -647,7 +647,7 @@ crc delete
 
 == Great work! You're done!
 
-You just deployed two microservices running in Open Liberty to OpenShift using CodeReady Containers. You also learned how to use `oc` to deploy your microservices on a {kube} cluster.
+You just deployed two microservices running in Open Liberty to OpenShift cluster using OpenShift Local. You also learned how to use `oc` to deploy your microservices on a {kube} cluster.
 
 // Multipane
 include::{common-includes}/attribution.adoc[subs="attributes"]
