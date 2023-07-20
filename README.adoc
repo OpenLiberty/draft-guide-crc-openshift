@@ -451,7 +451,7 @@ Enter the following URLs into your web browser to access your microservices. Sub
 
 In the http://system-route-my-project.apps-crc.testing/system/properties[first URL^], you see the system properties of the container JVM in JSON format. The http://inventory-route-my-project.apps-crc.testing/inventory/systems[second URL^] returns an empty list, which is expected because no system properties are stored in the inventory yet.
 
-Point your browser to the `http://[inventory-hostname]/inventory/systems/[system-hostname]` URL. When you go to this URL, the system properties that are taken from the `system` service are automatically stored in the inventory. Revisit the `http://[inventory-hostname]/inventory/systems` URL and you see a new entry.
+Point your browser to the `http://[inventory-hostname]/inventory/systems/[system-hostname]` URL. When you go to this http://inventory-route-my-project.apps-crc.testing/inventory/systems/system-route-my-project.apps-crc.testing[URL^], the system properties that are taken from the `system` service are automatically stored in the inventory. Revisit the `http://[inventory-hostname]/inventory/systems` URL and you see a new entry.
 
 // =================================================================================================
 // Testing the microservices
