@@ -117,7 +117,7 @@ Save this output as it might be required later in this guide.
 
 === Logging in to the cluster 
 
-To interact with the OpenShift cluster, you need to use the `oc` commands. OpenShift Local already includes the `oc` and `podman` binary. To use the `oc` and `podman` commands, run the following command to see instructions on how to configure your PATH:
+To interact with the OpenShift cluster, you need to use the `oc` commands. To build containers, you need a containerization software such as podman. OpenShift Local already includes the `oc` and `podman` binary. To use the `oc` and `podman` commands, run the following command to see instructions on how to configure your PATH:
 
 [role=command]
 ```
