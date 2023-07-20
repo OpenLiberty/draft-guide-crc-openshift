@@ -47,7 +47,7 @@ Different cloud-based solutions are available for running your {kube} workloads.
 
 {kube} is an open source container orchestrator that automates many tasks that are involved in deploying, managing, and scaling containerized applications. To learn more about Kubernetes, check out the https://openliberty.io/guides/kubernetes-intro.html[Deploying microservices to Kubernetes^] guide.
 
-https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.23/html/getting_started_guide/index[Red Hat OpenShift Local^] is a tool that you can use to quickly build and run a minimal OpenShift 4 cluster on your local computer. CRC simplifies setup and testing while providing all of tools that are needed to develop container-based applications. 
+https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.23/html/getting_started_guide/index[Red Hat OpenShift Local^] is a tool that you can use to quickly build and run a minimal OpenShift 4 cluster on your local computer. OpenShift Local simplifies setup and testing while providing all of tools that are needed to develop container-based applications. 
 
 The two microservices that you'll deploy are called `system` and `inventory`. The `system` microservice returns the JVM system properties of the running container. It also returns the pod name in the HTTP header, which makes pod replicas more distinguishable from each other. The `inventory` microservice adds the properties from the `system` microservice to the inventory. This process demonstrates how communication can be established between pods inside a cluster.
 
@@ -120,7 +120,7 @@ Save this output as it might be required later in this guide.
 
 === Logging in to the cluster 
 
-To interact with the OpenShift cluster, you need to use the `oc` commands. CRC already includes the `oc` binary. To use the `oc` commands, run the following command to see instructions on how to configure your PATH:
+To interact with the OpenShift cluster, you need to use the `oc` commands. OpenShift Local already includes the `oc` binary. To use the `oc` commands, run the following command to see instructions on how to configure your PATH:
 
 [role=command]
 ```
@@ -633,7 +633,7 @@ Next, you can delete the project by running the following command:
 oc delete project my-project
 ```
 
-Finally, you can stop and delete the CRC virtual machine by running the following commands:
+Finally, you can stop and delete the OpenShift Local virtual machine by running the following commands:
 
 [role='command']
 ```
