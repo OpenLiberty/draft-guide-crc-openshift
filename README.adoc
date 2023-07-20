@@ -251,8 +251,8 @@ Verify that the `system:1.0-SNAPSHOT` and `inventory:1.0-SNAPSHOT` images are li
 [role="no_copy"]
 ----
 REPOSITORY                     TAG
-system                         1.0-SNAPSHOT
-inventory                      1.0-SNAPSHOT
+localhost/system               1.0-SNAPSHOT
+localhost/inventory            1.0-SNAPSHOT
 icr.io/appcafe/open-liberty    kernel-slim-java11-openj9-ubi
 ----
 
@@ -270,109 +270,9 @@ Run the login command to authenticate your Docker client to your OCR.:
 
 [role=command]
 ```
-oc registry login --skip-check
+oc registry login --insecure=true
 ```
 
-To use the OpenShift registry domain, add it to the list of insecure registries for your Docker Engine.
-
-include::{common-includes}/os-tabs.adoc[]
-
-[.tab_content.mac_section]
---
-Click the Docker icon in your menu bar, select *Preferences*, and then click *Docker Engine*. If a JSON object already exists, add the following key/value pair to it:
-
-[role="command"]
-----
-"insecure-registries": ["default-route-openshift-image-registry.apps-crc.testing"]
-----
-
-If no JSON object exists, add the following object: 
-
-[role="command"]
-----
-{
-  "insecure-registries": ["default-route-openshift-image-registry.apps-crc.testing"]
-}
-----
-
-Next, press the *Apply & Restart* button for the changes to take effect.
---
-
-[.tab_content.windows_section]
---
-Click the Docker icon in your system tray, select *Settings*, and then click *Docker Engine*. If a JSON object already exists, add the following key/value pair to it:
-
-[role="command"]
-----
-"insecure-registries": ["default-route-openshift-image-registry.apps-crc.testing"]
-----
-
-If there's no existing JSON object, instead add the following object: 
-
-[role="command"]
-----
-{
-  "insecure-registries": ["default-route-openshift-image-registry.apps-crc.testing"]
-}
-----
-
-Next, press the *Apply & Restart* button for the changes to take effect. 
---
-
-[.tab_content.linux_section]
---
-
-Open the `/etc/docker/daemon.json` file or create it if it doesn't already exist. If the file already contains a JSON object, add the following key/value pair: 
-
-[role="command"]
-----
-"insecure-registries": ["default-route-openshift-image-registry.apps-crc.testing"]
-----
-
-If the file doesn't already contain a JSON object, instead add the following object:
-
-[role="command"]
-----
-{
-  "insecure-registries": ["default-route-openshift-image-registry.apps-crc.testing"]
-}
-----
-
-Next, restart Docker for the changes to take effect.
---
-
-To learn more about testing insecure registries, check out the official https://docs.docker.com/registry/insecure/[Docker documentation]. Remember to use a secure registry for production environments.
-
-You can store your Docker credentials in a custom external credential store, which is more secure than using a Docker configuration file. If you're using a custom credential store for securing your registry credentials, or if you're unsure where your credentials are stored, use the following command:
-
-include::{common-includes}/os-tabs.adoc[]
-
-[.tab_content.mac_section.linux_section]
---
-[role=command]
-```
-echo $(oc whoami -t) | docker login -u developer --password-stdin $(oc registry info)
-```
---
-
-[.tab_content.windows_section]
---
-Because the Windows command prompt doesn’t support the command substitution that is displayed for Mac and Linux, run the following commands: 
-[role=command]
-```
-oc whoami
-oc whoami -t
-oc registry info
-```
-
-Replace the square brackets in the following `docker login` command with the results from the previous commands:
-[role=command]
-```
-docker login -u [oc whoami] -p [oc whoami -t] [oc registry info]
-```
---
-
-This command authenticates your credentials against the internal registry so that you're able to push and pull images.
 
 You can view the registry address by running the following command:
 
