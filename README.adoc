@@ -57,7 +57,7 @@ The two microservices that you'll deploy are called `system` and `inventory`. Th
 
 == Additional prerequisites
 
-Before you begin, the following tool needs to be installed:
+Before you begin, install OpenShift Local.
 
 * *OpenShift Local:* You need to install OpenShift Local to run OpenShift 4 locally on your computer. For installation instructions, refer to the official https://access.redhat.com/documentation/en-us/red_hat_openshift_local/2.23/html/getting_started_guide/installing[OpenShift Local documentation].   
 
