@@ -124,7 +124,7 @@ To interact with the OpenShift cluster, you need to use the `oc` commands. To bu
 crc podman-env
 ```
 
-The resulting output differs based on your OS and environment, but you should get an output similar to the following:
+The resulting output differs based on your OS and environment, but the output is similar to the following example:
 
 include::{common-includes}/os-tabs.adoc[]
 [.tab_content.linux_section]
