@@ -555,7 +555,7 @@ crc delete
 
 == Great work! You're done!
 
-You just deployed two microservices running in Open Liberty to OpenShift cluster using OpenShift Local. You also learned how to use `oc` to deploy your microservices on a {kube} cluster.
+You just deployed two microservices running in Open Liberty to an OpenShift cluster by using OpenShift Local. You also learned how to use `oc` to deploy your microservices on a {kube} cluster.
 
 // Multipane
 include::{common-includes}/attribution.adoc[subs="attributes"]
