@@ -92,7 +92,7 @@ Next, run the following command to start the OpenShift Local virtual machine and
 crc start
 ```
 
-When prompted, supply your user pull secret. The pull secret can be found on the page where you downloaded the https://cloud.redhat.com/openshift/create/local[latest release of OpenShift Local].
+Supply your user pull secret at the prompt. You can find the pull secret  on the page where you downloaded the https://cloud.redhat.com/openshift/create/local[latest release of OpenShift Local].
 
 If the cluster starts successfully, you can see output similar to the following example:
 
