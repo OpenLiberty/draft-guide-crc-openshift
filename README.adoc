@@ -20,7 +20,7 @@
 :page-seo-title: Deploying Java microservices to Red Hat OpenShift using OpenShift Local (formerly known as CodeReady Containers)
 :page-seo-description: A getting started tutorial with examples on how to deploy Java microservices to a Kubernetes cluster on OpenShift running locally with OpenShift Local (formerly known as CodeReady Containers) using OpenShift Container Registry (OCR). 
 :guide-author: Open Liberty
-= Deploying microservices to OpenShift cluster using OpenShift Local
+= Deploying microservices to an OpenShift cluster using OpenShift Local
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website^].
