@@ -1,4 +1,4 @@
-// Copyright (c) 2021, 2023 IBM Corporation and others.
+// Copyright (c) 2021, 2024 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -12,7 +12,7 @@
 :page-releasedate: 2021-06-22
 :page-majorupdateddate: 2023-08-15
 :page-description: Explore how to deploy microservices to a local OpenShift cluster running with OpenShift Local (formerly known as CodeReady Containers)
-:page-tags: ['Kubernetes', 'Docker', 'Cloud'] 
+:page-tags: ['kubernetes', 'docker', 'cloud'] 
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['kubernetes-intro', 'kubernetes-microprofile-config', 'kubernetes-microprofile-health', 'istio-intro', 'cloud-openshift-operator'] 
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
@@ -447,9 +447,9 @@ Enter the following URLs into your web browser to access your microservices. Sub
 * `http://[inventory-hostname]/inventory/systems`
 
 
-In the http://system-route-my-project.apps-crc.testing/system/properties[first URL^], you see the system properties of the container JVM in JSON format. The http://inventory-route-my-project.apps-crc.testing/inventory/systems[second URL^] returns an empty list, which is expected because no system properties are stored in the inventory yet.
+In the first URL, you see the system properties of the container JVM in JSON format. The second URL returns an empty list, which is expected because no system properties are stored in the inventory yet.
 
-Point your browser to the `http://[inventory-hostname]/inventory/systems/[system-hostname]` URL. When you go to this http://inventory-route-my-project.apps-crc.testing/inventory/systems/system-route-my-project.apps-crc.testing[URL^], the system properties that are taken from the `system` service are automatically stored in the inventory. Revisit the `http://[inventory-hostname]/inventory/systems` URL and you see a new entry.
+Point your browser to the `http://[inventory-hostname]/inventory/systems/[system-hostname]` URL. When you go to this URL, the system properties that are taken from the `system` service are automatically stored in the inventory. Revisit the `http://[inventory-hostname]/inventory/systems` URL and you see a new entry.
 
 // =================================================================================================
 // Testing the microservices
