@@ -68,13 +68,13 @@ jobs:
           sudo cat "$logsPath" | grep Launching
       - name: Archive system logs if failed
         if: failure()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: system-server-logs
           path: finish/system/target/liberty/wlp/usr/servers/defaultServer/logs/
       - name: Archive inventory logs if failed
         if: failure()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: inventory-server-logs
           path: finish/inventory/target/liberty/wlp/usr/servers/defaultServer/logs/
